@@ -37,11 +37,13 @@ mongoose
 console.log("Mongo URI:", process.env.MONGO_URI);
 */
 
+const PORT = process.env.PORT || 3000;
+
 mongoose
   .connect(process.env.dbURI)
   .then(() => {
-    app.listen(3000, () => {
-      console.log("Server is running on http://localhost:3000");
+    app.listen(PORT, () => {
+      console.log(`Listening on port ${PORT}`);
     });
   })
   .catch((err) => console.log(err));
