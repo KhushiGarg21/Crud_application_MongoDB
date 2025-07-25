@@ -1,0 +1,288 @@
+doubt
+req made on/favicon.ico
+if i want to make one more schema like hellos, then how?
+padding: var(--inputPaddingV) var(--inputPaddingH);	
+//route for users/with var
+
+Scaler Notes NodeJS: 
+- js is a language built for browser whereas nodejs gives a runtime environment for js, means nodejs allow js to run a local machine.
+- Single-threaded	One main thread handles all requests	Low memory usage, scalable
+- Asynchronous	Uses non-blocking I/O with callbacks	Efficient for high I/O (API calls, DB)
+
+------------
+logics:
+to delete the particular item with id 'id' out of a number of items called courses:
+app.delete('/courses/:id, (req, res)=>{
+  let course = courses.find(course=> course.id === parseInt(req.params.id));
+
+const index = courses.indexOf(course);
+courses.splice(index, 1);
+res.send(course);
+})
+
+
+
+-------------------------------------------------------------
+
+mkdir my-node-app
+cd my-node-app
+npm init -y
+
+npm install fs path
+Create a index.js file
+
+npm install -g nodemon
+
+npx nodemon index.js
+
+Run the Application: node index.js
+
+Node JS allow us to open a file from the system and read the file and the server return the content to the client.
+
+code:
+----------------//1
+http.createServer(function(req, res){
+// created a new http server. This function is known as callback function.This function will come to an action whenver server recieves a http request.
+res.writeHead(200, {'Content-type': 'text/html'});
+res.end('Hello World!');
+}).listen(8080);
+
+
+-------------------//2
+var dt = require("./myfirstmodule");
+
+http.createServer(function (req, res) {
+    res.writeHead(200, { "Content-Type": "text/html" });
+    res.write("The date and time are currently: " + dt.myDateTime());
+    res.end();
+  })
+  .listen(8080, () => {
+    // Print in the console when the
+    // servers starts to listen on 8080
+    console.log("Listening to port 8080");
+  });
+
+
+------------------------//3 File opeations
+a)
+http
+  .createServer(function (req, res) {
+    fs.readFile("demofile.html", function (err, data) {
+      res.writeHead(200, { "Content-Type": "text/html" });
+      res.write(data);
+      return res.end();
+    });
+  })
+//
+b)
+  http
+  .createServer(function (req, res) {
+    fs.appendFile("demofile_1.html", "Hello There!", function (err, data) {
+      if (err) throw err;
+      console.log('Saved!');
+    });
+  })
+
+c) writeFile, open, unlink, rename
+
+
+//4 Callback concept: the callback is invoked when readfile finishes by returning some content. while the read task is going on, nodejs async runs the while loop.
+
+//function function_name(argument, function(callback_argument))
+
+var fs = require('fs')
+fs.readFile('notes.txt', function(err, data){
+  if(err) return console.error(err);
+    console.log(data.toString());  
+});
+
+
+let i = 1;
+while(i<=5){
+    console.log(" number:" + i);
+    i++;
+}
+
+5// Node JS Events
+var events = require('events');
+var eventEmitter = new events.EventEmitter();
+
+//Created one event
+var myEventHandler = function(){
+    console.log(" I am a doctor");
+}
+
+//assign this task to profession
+eventEmitter.on('Profession', myEventHandler);
+
+eventEmitter.emit('Profession');
+
+//6 Express - Upload files.
+//Express JS, multer
+// express used for creating the server and handles the request and responses.
+// multer helps to handle the file uploads.
+//path is to write the file paths.
+//fs interacting with file operations.
+
+const express = require('express');
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
+
+const app = express();
+const port = 1121;
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    
+    cb(null, './test');
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+const upload = multer({ storage: storage });
+if (!fs.existsSync('./test')) {
+  fs.mkdirSync('./test');
+}
+
+app.post('/upload', upload.single('file'), (req, res) => {
+  if (!req.file) {
+    return res.status(400).send('No file uploaded');
+  }
+  res.send(`File uploaded successfully: ${req.file.filename}`);
+});
+app.get('/', (req, res) => {
+  res.send(`
+    <h1>Upload a File</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <input type="file" name="file" />
+      <button type="submit">Upload</button>
+    </form>
+  `);
+});
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
+});
+
+----------------------------
+// Express Framework:
+
+(a)
+var express = require('express');
+var app = express();
+
+var port = 1121;
+app.get('/', function(req,res){
+    res.send('hello world');
+})
+
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
+});
+
+(b)
+
+var express = require('express');
+var app = express();
+
+var port = 1121;
+var path = require('path');
+
+/*app.get('/', function(req,res){
+    res.sendFile(path.join(__dirname, "demo.html"));
+})*/
+
+app.get('/process_get', function(req, res){
+    response = {
+        first_name: req.query.first_name,
+        last_name: req.query.last_name,
+    };
+    console.log(response);
+    res.end(JSON.stringify(response));
+})
+
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
+});
+
+//demo.html
+
+<html>
+    <body>
+        <h1>Ask user for the details</h1>
+    <form action="/process_get" method="get">
+      First Name: <input type="text" name="first_name" />
+      Last Name: <input type="text" name="last_name" />
+      <input type="submit" value="submit">
+    </form>
+
+    </body>
+</html>
+
+// (c) POST method installed body -parser : to handle the post data
+
+index.js file:
+
+const express = require("express");
+const path = require("path");
+const app = express();
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());  // 👈 this enables raw JSON parsing
+
+// Serve the form page (GET)
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "demo.html"));
+});
+
+// Handle GET with query parameters (optional)
+app.get("/getsubmit", (req, res) => {
+  const response = {
+    method: "GET",
+    first_name: req.query.first_name,
+    last_name: req.query.last_name,
+  };
+  console.log("GET response:", response);
+  res.json(response);
+});
+
+// Handle form submission (POST)
+app.post("/submit", (req, res) => {
+  const response = {
+    method: "POST",
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+  };
+  console.log("POST response:", response);
+  res.json(response);
+});
+
+app.listen(1121, () => console.log("Server running at http://localhost:1121"));
+
+
+demo.html file: 
+
+<html>
+  <body>
+    <h1>Ask user for the details</h1>
+    <form action="/getsubmit" method="GET">
+      <label>First Name: <input type="text" name="first_name" /></label><br />
+      <label>Last Name: <input type="text" name="last_name" /></label><br />
+      <input type="submit" value="Submit" />
+    </form>
+
+    <form action="/submit" method="post">
+      <label>First Name: <input type="text" name="first_name" /></label><br />
+      <label>Last Name: <input type="text" name="last_name" /></label><br />
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>
+
+
+---------------
+mongodb
+
+npm i mongodb mongoose
+npm install dotenv

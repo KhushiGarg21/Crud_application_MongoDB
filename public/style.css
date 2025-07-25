@@ -1,0 +1,152 @@
+body {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+  font-family: "Franklin Gothic Medium";
+  background-color: #d2e0d3;
+  background-repeat: no repeat;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  border-bottom: 10px;
+  text-transform: uppercase;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+nav li {
+  list-style-type: none;
+  margin-left: 20px;
+  font-weight: bolder;
+}
+nav h1 {
+  font-size: 3em;
+  color: #596854;
+}
+
+nav p,
+nav a {
+  color: #9fa136;
+  font-weight: 300;
+}
+
+footer {
+  color: #5d7f61;
+  text-align: center;
+  margin: 30px auto 20px;
+}
+
+h3 {
+  text-transform: capitalize;
+  margin-bottom: 8px;
+}
+
+p,
+h1,
+h2,
+h3,
+a,
+ul {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: #252525;
+}
+
+.index a {
+  color: #5d7f61;
+  display: block;
+  border: 3px solid #5d7f61;
+  background-color: #b0bec5;
+  border-radius: 2rem;
+  padding: 10px;
+  padding-left: 30px;
+  margin: 40px 0;
+}
+
+.index a:hover h3 {
+  color: #5d7f61;
+}
+
+.details {
+  top: 0;
+  display: block;
+  justify-content: space-between;
+  border: 3px solid #5d7f61;
+}
+
+.details h1 {
+  color: #a2bc36;
+  font-weight: 300;
+  padding-bottom: 20px;
+  padding-left: 10px;
+}
+
+.details h2 {
+  color: #5d7f61;
+  font-weight: bolder;
+
+  padding-left: 10px;
+}
+.content p {
+  color: #5d7f61;
+  font-weight: bolder;
+  padding: 20px;
+}
+
+.operation-btn {
+  margin-left: 20px;
+  display: flex;
+  padding: 20px;
+}
+
+button {
+  border: none;
+  font-size: larger;
+  cursor: pointer;
+  height: 40px;
+  margin: 20px;
+}
+
+button:hover {
+  background-color: #303631;
+  color: white;
+}
+
+.create-blog form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+.create-blog input,
+.create-blog textarea {
+  width: 100%;
+  display: block;
+  margin: 5px 0;
+  padding: 8px;
+}
+
+.create-blog input,
+.create-blog textarea {
+  border-radius: 0.4rem;
+  border: none;
+  transition-duration: 0.5s;
+}
+
+.create-blog input:hover,
+.create-blog textarea:hover {
+  background-color: #a75809;
+}
+.create-blog input::placeholder {
+  color: #b0bec5;
+}
+
+.sub {
+}
