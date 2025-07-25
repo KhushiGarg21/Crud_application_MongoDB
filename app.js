@@ -49,6 +49,7 @@ mongoose
   .catch((err) => console.log(err));
 
 // register view engine
+app.set('views', path.join(__dirname, 'views'));
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
