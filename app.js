@@ -19,10 +19,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json());
 
-//Added .env for your reference.
-//dbURI = mongodb+srv://Khushi:1201564321Kh@cluster0.oy3vc0j.mongodb.net/data?retryWrites=true&w=majority
-
-
 /*
 mongoose
   .connect(dbURI)
@@ -130,4 +126,5 @@ app.post("/users/:id", (req, res) => {
       console.log(err);
     });
 });
+
 
