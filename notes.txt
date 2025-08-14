@@ -5,23 +5,14 @@ padding: var(--inputPaddingV) var(--inputPaddingH);
 //route for users/with var
 
 Scaler Notes NodeJS: 
-- js is a language built for browser whereas nodejs gives a runtime environment for js, means nodejs allow js to run a local machine.
+- js is a language built for browser whereas nodejs gives a runtime environment for js, means nodejs allow js to run a local machine and u can build server side applications. It is not a framework.
 - Single-threaded	One main thread handles all requests	Low memory usage, scalable
 - Asynchronous	Uses non-blocking I/O with callbacks	Efficient for high I/O (API calls, DB)
 
-------------
-logics:
-to delete the particular item with id 'id' out of a number of items called courses:
-app.delete('/courses/:id, (req, res)=>{
-  let course = courses.find(course=> course.id === parseInt(req.params.id));
-
-const index = courses.indexOf(course);
-courses.splice(index, 1);
-res.send(course);
-})
-
-
-
+Now Express JS is a framework.
+Features: - develop fast and robust apps becoz it removes boilerplate and confgurations.
+- Middleware
+- routing
 -------------------------------------------------------------
 
 mkdir my-node-app
